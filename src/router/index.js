@@ -6,9 +6,11 @@ Vue.use(Router)
 // lazy load
 const cHello = resolve => require(['../components/Hello'], resolve)
 
-const cIndex = resolve => require(['../views/Index'], resolve)
-const cAbout = resolve => require(['../views/About'], resolve)
-const cLogin = resolve => require(['../views/Login'], resolve)
+const vIndex = resolve => require(['../views/Index'], resolve)
+const vArticle = resolve => require(['../views/Article'], resolve)
+const vArticleDetails = resolve => require(['../views/ArticleDetails'], resolve)
+const vAbout = resolve => require(['../views/About'], resolve)
+const vLogin = resolve => require(['../views/Login'], resolve)
 
 export default new Router({
   routes: [
@@ -20,17 +22,27 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
-      component: cIndex
+      component: vIndex
+    },
+    {
+      path: '/article',
+      name: 'Article',
+      component: vArticle
+    },
+    {
+      path: '/article/:id',
+      name: 'ArticleDetails',
+      component: vArticleDetails
     },
     {
       path: '/about',
       name: 'About',
-      component: cAbout
+      component: vAbout
     },
     {
       path: '/login',
       name: 'Login',
-      component: cLogin
+      component: vLogin
     }
   ]
 })
