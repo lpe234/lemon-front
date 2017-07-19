@@ -11,9 +11,17 @@ const vArticle = resolve => require(['../views/Article'], resolve)
 const vArticleDetails = resolve => require(['../views/ArticleDetails'], resolve)
 const vAbout = resolve => require(['../views/About'], resolve)
 const vLogin = resolve => require(['../views/Login'], resolve)
+const vArticleEdit = resolve => require(['../views/ArticleEditor'], resolve)
+
+const vDefault = resolve => require(['../views/Default'], resolve)
 
 export default new Router({
   routes: [
+    {
+      path: '*',
+      name: 'Default',
+      component: vDefault
+    },
     {
       path: '/hello',
       name: 'Hello',
@@ -43,6 +51,24 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: vLogin
+    },
+    {
+      path: '/article_editor',
+      name: 'ArticleEditor',
+      component: vArticleEdit,
+      meta: {
+        requiresAuth: true,
+        action: 'create'
+      }
+    },
+    {
+      path: '/article_editor/:id',
+      name: 'ArticleEditor',
+      component: vArticleEdit,
+      meta: {
+        requiresAuth: true,
+        action: 'edit'
+      }
     }
   ]
 })
