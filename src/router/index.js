@@ -53,17 +53,8 @@ export default new Router({
       component: vLogin
     },
     {
-      path: '/article_editor',
-      name: 'ArticleEditor',
-      component: vArticleEdit,
-      meta: {
-        requiresAuth: true,
-        action: 'create'
-      }
-    },
-    {
-      path: '/article_editor/:id',
-      name: 'ArticleEditor',
+      path: '/article/:id/edit',
+      name: 'ArticleDetailsEditor',
       component: vArticleEdit,
       meta: {
         requiresAuth: true,

@@ -23,4 +23,8 @@ cnpm install --save-dev less
 cnpm install --save-dev less-loader
 ```
 
+## about markdown display
+
+[https://github.com/chjj/marked/](https://github.com/chjj/marked/)
+[https://github.com/isagalaev/highlight.js](https://github.com/isagalaev/highlight.js)
 

@@ -15,7 +15,8 @@
 
     <div id="editor">
       <mavon-editor
-        :value="editor.defaultValue"
+        :placeholder="editor.defaultValue"
+        :value="article.content"
         :ishljs="editor.highlightJS"
         :toolbars="editor.defaultToolbars"
         v-on:change="receiveData"
@@ -32,6 +33,10 @@
   // Local Registration
   import { mavonEditor } from 'mavon-editor'
   import 'mavon-editor/dist/css/index.css'
+
+  import ArticleApi from '../api/ArticleApi'
+
+  const api = new ArticleApi()
 
   export default {
     name: 'article-editor',
@@ -84,11 +89,24 @@
       doPublish () {
         console.log('publish')
         console.log(this.article)
+        // TODO: redirect to this article preview
       },
       // get markdown text
       receiveData (val, render) {
         this.article.content = val
+      },
+      getArticle () {
+        let that = this
+        const aid = that.$route.params.id
+        if (aid !== undefined && aid !== '') {
+          api.getById(aid).then(function (resp) {
+            that.article = resp.data.data.article
+          })
+        }
       }
+    },
+    mounted () {
+      this.getArticle()
     }
   }
 </script>
